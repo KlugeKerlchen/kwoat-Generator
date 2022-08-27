@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>kwoat-Generator</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DynaPuff">
+    <script src="https://kit.fontawesome.com/11a773415b.js" crossorigin="anonymous"></script>
+    <style>
+        :root{
+            font-size: 16px;
+            font-family: 'Open Sans', Arial;
+        }
+        body{
+            height: 95vh;
+            background-color: #EA638C;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+
+            transition: background-color 500ms ease-out;
+        }
+        .main-content{
+            background-color: white;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            max-width: 50vw;
+            min-width: 20vw;
+        }
+        .kwoat{
+
+        }
+        #content{
+            font-size: 1.5rem;
+        }
+        #person{
+            font-size: 2rem;
+        }
+        #newKwoat{
+            display: inline-block;
+            padding: 10px 15px;
+            font-size: 2rem;
+            margin: auto;
+            color: white;
+            background-color: #222222;
+            border-radius: 5px;
+            border: none;
+
+            transition: transform 300ms ease-out;
+        }
+        #newKwoat:hover{
+            transform: scale(1.1);
+        }
+
+        @media screen and (max-width: 600px){
+            .main-content{
+                max-width: 75vw;
+                min-width: 50vw;
+                padding: 30px;
+            }
+        }
+
+        /* navbar */
+        .navbar{
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 5rem;
+            height: 100%;
+            
+            background-color: #333333;
+            transition: width 200ms ease-out;
+        }
+        .navbar-nav{
+            height: 100%;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow: hidden;
+            overflow-wrap: nowrap;
+        }
+        .nav-item{
+            color: white;
+        }
+        .nav-link {
+            color: white;
+            padding-left: 10px;
+            display: flex;
+            align-items: center;
+            height: 5rem;
+            text-decoration: none;
+            font-size: 3rem;
+            height: 5rem;
+            filter: grayscale(70%) opacity(0.7) contrast(50%);
+            cursor: pointer;
+            color: #EA638C;
+
+            transition: color 500ms ease-out;
+        }
+        .nav-link:hover{
+            filter: grayscale(0%) opacity(1);
+            background-color: #444444;
+        }
+        .link-text{
+            display: none;
+            font-size: 1.5rem;
+            margin-left: 1rem;
+            white-space: nowrap;
+        }
+        .logo{
+            display: flex;
+            align-items: center;
+            color: white;
+            font-size: 2.4rem;
+            letter-spacing: -3px;
+            font-weight: bold;
+            margin-bottom: 250px;
+            margin-top: 10px;
+            font-family: 'DynaPuff', Arial;
+        }
+        .logo-short{
+            margin-bottom: calc(231px-46px);
+        }
+        .logo-long{
+            display: none;
+            font-size: 3.5rem;
+        }
+        .logo-long > h6{
+            display: inline;
+            font-size: 4rem;
+            color: #EA638C;
+            transition: color 500ms ease-out;
+        }
+        .navbar:hover .logo-long{
+            display: inline-block;
+        }
+        .navbar:hover .logo-short{
+            display: none;
+        }
+        .navbar:hover .logo{
+            margin-bottom: calc(250px - (231px - 46px)); /* calc(margin-bottom - (.logo-long.width - logo-short.width)) */
+        }
+        #arrow{
+            margin-top: auto;
+            font-size: 4rem;
+            margin-left: 10px;
+            margin-right: 10px;
+            color: white;
+            align-self: flex-start;
+            filter: grayscale(100%) opacity(0.7);
+
+            transition: transform 500ms ease-in-out,  color 200ms ease-out;
+        }
+        .navbar:hover #arrow{
+            transform: rotate(180deg);
+            color: #EA638C;
+            align-self: flex-end;
+            filter: grayscale(0%) opacity(1);
+        }
+        @media only screen and (max-width: 600px){
+            .navbar{
+                bottom: 0;
+                top: auto;
+                width: 100vw;
+                height: 5rem;
+            }
+            .logo-short{
+                display: none;
+            }
+            .navbar-nav{
+                flex-direction: row;
+            }
+            .nav-item{
+                margin: 0 4vw;
+            }
+            .logo{
+                display: none;
+            }
+            #arrow{
+                display: none;
+            }
+            .dropdown-content{
+                bottom: 50px;
+                margin-left: 0;
+                margin-right: 0;
+                right: 2vw;
+                margin: auto;
+                width: 90vw;
+            }
+        }
+        @media only screen and (min-width: 601px){
+            .navbar:hover{
+                width: 16rem;
+            }
+            .navbar:hover .link-text{
+                display: inline-block;
+            }
+        }
+
+        /* search-dropdown*/
+        
+        .dropdown {
+            position: relative;
+            display: none;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: fixed;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            padding: 12px 16px;
+            z-index: 1;
+            border-radius: 10px;
+            color: #222222;
+            margin-left: 16rem;
+            margin-top: -130px;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        #author-select{
+            border: none;
+            background-color: #444444;
+            color: white;
+            text-align: center;
+            width: 100px;
+            height: 30px;
+            border-radius: 5px;
+        }
+        #author-select:hover{
+            outline: 2px solid #06070E;
+        }
+
+        #content-search{
+            background-color: #444444;
+            color: white;
+            border: none;
+            padding: 3px;
+        }
+        #content-search:focus{
+            outline: 2px solid #06070E;
+        }
+
+        #search-button{
+            background-color: #444444;
+            color: white;
+            border: none;
+            text-align: center;
+            /*margin-left: calc(235px/2 - 80px/2);*/
+            margin-left: 61px;
+            border-radius: 5px;
+            padding: 7.5px 20px;
+        }
+        #search-button:hover{
+            outline: 2px solid #06070E;
+        }
+    </style>
+</head>
+<body id="body">
+    <header>
+        <nav class="navbar">
+            <ul class="navbar-nav">
+                <li class="logo"><span class="logo-short">KKK</span><span class="logo-long"><h6>K</h6>luge <h6>K</h6>erlchen <h6>K</h6>lan</span></li>
+                <li class="nav-item" onclick="changeColor()"><a class="nav-link"><i  style="padding: 0 6px;" class="fa-solid fa-palette"></i><span class="link-text">change Color</span></a></li>
+                <li class="nav-item" onclick="showDropdown()"><a class="nav-link" id="search-link"><i  style="padding: 0 6px;" class="fa-solid fa-magnifying-glass"></i><span class="link-text">Search</span></a></li>
+                <li><div class="dropdown"></div><div class="dropdown-content" onmouseleave="hideDropdown()">
+                    <label for="author-select">Choose an author:</label><br>
+                    <select name="author-select" id="author-select">
+                        <option value="Everyone">Everyone</option>
+                        <option value="Rocco">Rocco</option>
+                        <option value="Maike">Maike</option>
+                        <option value="Mischa">Mischa</option>
+                        <option value="Ben1">Ben1</option>
+                    </select>
+                    <br><br>
+                    <form>
+                        <label for="content-search">Search for specific Content:</label><br>
+                        <input type="text" id="content-search" name="content-search" value="">
+                    </form> <br>
+                    <button id="search-button">Search</button>
+                </div></li>
+                <li class="nav-item"><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="nav-link"><i style="padding: 0 3px;" class="fa-brands fa-youtube"></i><span class="link-text">Youtube</span></a></li>
+                <li class="nav-item"><a href="" class="nav-link"><i class="fa-solid fa-robot"></i><span class="link-text">Quotes</span></a></li>
+                <li id="arrow"><i class="fa-solid fa-arrow-right"></i></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+    <div class="main-content">
+        <div class="kwoat">
+            <p id="content">“Two things are infinite: the universe and human stupidity; and I'm not sure about the universe.”</p>
+            <p id="person">Albert Einstein</p>
+        </div>
+        <button id="newKwoat">new Kwoat</button>
+    </div>
+    </main>
+    <script>
+    // get Elements
+    const content = document.getElementById('content');
+    const person = document.getElementById('person');
+    const button = document.getElementById('newKwoat');
+
+    const kwoats = [
+        {
+            kwoat: `"maike, ich mag deine pussy"`,
+            person: 'Rocco'
+        },
+        {
+            kwoat: `"FRESSE"`,
+            person: 'Mischa'
+        },
+        {
+            kwoat: `"Traube"`,
+            person: 'Jihad'
+        },
+        {
+            kwoat: `"Ich hasse Franzosen"`,
+            person: 'Rocco'
+        },
+        {
+            kwoat: `"Du hast das falsch Geschrieben"`,
+            person: 'Ben1'
+        },
+        {
+            kwoat: `"FEUERALARM"`,
+            person: 'Mischa'
+        },
+        {
+            kwoat: `"Ich kann einfach nicht schreiben HAHAHHA"`,
+            person: 'Maike'
+        },
+        {
+            kwoat: `"DAS KIND IST DER MÖRDER"`,
+            person: 'Mischa'
+        },
+        {
+            kwoat: `"Immerhin hab ich ne freundin"`,
+            person: 'Rocco'
+        },
+        {
+            kwoat: `"Russische Keller pornos hab ich recht"`,
+            person: 'Maike'
+        },
+        {
+            kwoat: `"Boar gönn dir"`,
+            person: 'Maike'
+        },
+        {
+            kwoat: `"7"`,
+            person: 'Hendrik'
+        },
+        {
+            kwoat: `"... 🍆?"`,
+            person: 'Mischa'
+        },
+        {
+            kwoat: `"Welchen Nachnamen hat dein Paul?"`,
+            person: 'Jihad'
+        },
+        {
+            kwoat: `"Mama Jihad?"`,
+            person: 'Mischa'
+        },
+        {
+            kwoat: `"😳😳😏😏🥰🥰"`,
+            person: 'Hendrik'
+        },
+        {
+            kwoat: `"ICH GLAUB ICH HAB MICH GERADE VERLIEBT"`,
+            person: 'Mischa'
+        },
+        {
+            kwoat: `"Die sieht nett aus"`,
+            person: 'Jihad'
+        }
+    ];
+    
+    let wantedItems = [];
+    let specified = false; // true if search is in use
+    function makeNewKwoat() {
+        console.log(wantedItems);
+        if(specified == true){
+            let random = Math.floor(Math.random() * wantedItems.length);
+            console.log(random);
+            content.innerText = kwoats[wantedItems[random]].kwoat;
+            person.innerText = kwoats[wantedItems[random]].person;
+        } else{
+        let random = Math.floor(Math.random() * kwoats.length);
+        content.innerText = kwoats[random].kwoat;
+        person.innerText = kwoats[random].person;
+        }
+    }
+    button.addEventListener('click', makeNewKwoat)
+
+    //search
+
+    let selectOn = false;
+    function toggleSelect(){
+        if(selectOn == true){
+            selectOn = false;
+        }
+        else if(selectOn == false){
+            selectOn = true;
+        }
+    }
+    document.getElementById('author-select').addEventListener('click', toggleSelect)
+    document.getElementById('content-search').addEventListener('focusin', toggleSelect)
+    document.getElementById('content-search').addEventListener('focusout', toggleSelect)
+
+    function mouseEnter(){
+        document.getElementById('search-link').style.filter = 'grayscale(0%) opacity(1)';
+        document.getElementById('search-link').style.backgroundColor = '#444444';
+    }
+    function mouseLeave(){
+        document.getElementById('search-link').style.filter = 'grayscale(100%) opacity(0.7)';
+        document.getElementById('search-link').style.backgroundColor = '#333333';
+    }
+
+
+    var isHidden = true;
+    function showDropdown(){
+        if(isHidden === true){
+            document.getElementsByClassName('dropdown-content')[0].style.display = 'block';
+            document.getElementById('search-link').style.filter = 'grayscale(0%) opacity(1)';
+            document.getElementById('search-link').style.backgroundColor = '#444444';
+            isHidden = false;
+            document.getElementById('search-link').removeEventListener('mouseenter', mouseEnter)
+            document.getElementById('search-link').removeEventListener('mouseleave', mouseLeave)
+        }
+    }
+    function hideDropdown(){
+        if(isHidden === false && selectOn == false){
+            console.log('fuck you')
+            document.getElementsByClassName('dropdown-content')[0].style.display = 'none';
+            document.getElementById('search-link').style.filter = 'grayscale(100%) opacity(0.7)';
+            document.getElementById('search-link').style.backgroundColor = '#333333';
+            isHidden = true;
+        }
+        document.getElementById('search-link').addEventListener('mouseenter', mouseEnter)
+        document.getElementById('search-link').addEventListener('mouseleave', mouseLeave)
+    }
+
+    document.getElementById('search-button').addEventListener('click', function(){
+        searchAuthor = document.getElementById('author-select').value;
+        searchContent = document.getElementById('content-search').value;
+        console.log({searchAuthor, searchContent});
+
+        // search
+        if(searchAuthor === 'Everyone' && searchContent === ''){
+            specified = false;
+            let random = Math.floor(Math.random() * kwoats.length);
+            content.innerText = kwoats[random].kwoat;
+            person.innerText = kwoats[random].person;
+        }
+        else if(searchAuthor !== 'Everyone' && searchContent === ''){
+            wantedItems = [];
+            specified = true;
+            for(let i in kwoats){
+                if(kwoats[i].person === searchAuthor){
+                    wantedItems.push(i);
+                }
+            }
+            makeNewKwoat();
+        }
+        else if(searchAuthor === 'Everyone' && searchContent !== ''){
+            wantedItems	= [];
+            specified = true;
+            for(let i in kwoats){
+                if(kwoats[i].kwoat.includes(searchContent)){
+                    wantedItems.push(i);
+                }
+            }
+            makeNewKwoat();
+        }
+        else if(searchAuthor !== 'Everyone' && searchContent !== ''){
+            wantedItems = [];
+            specified = true;
+            for(let i in kwoats){
+                if(kwoats[i].kwoat.includes(searchContent) && kwoats[i].person === searchAuthor){
+                    wantedItems.push(i);
+                }
+            }
+            makeNewKwoat();
+        }
+    })
+    document.getElementById('search-button').addEventListener('click', hideDropdown, {useCapture: false})
+
+
+
+    // random Color
+
+    function getRndInteger(min, max) { //  returns a random number between min and max (both included)
+        return Math.floor(Math.random() * (max - min + 1) ) + min;
+    }
+
+    function getRndColor(){
+        let random_r = getRndInteger(0,255);
+        let random_g = getRndInteger(0,255);
+        let random_b = getRndInteger(0,255);
+        let random_color = 'rgb(' + random_r + ',' + random_g + ',' + random_b + ')';
+        return random_color;
+    }
+    function getRndColor_hsl(){
+        let random_h = getRndInteger(0,355);
+        let random_color = 'hsl(' + random_h + ',100%, 50%)'
+        return random_color;
+    }
+    function changeColor(){
+        random_color = getRndColor_hsl();
+        document.getElementById('body').style.backgroundColor = random_color;
+        for (let i = 0; i < document.querySelectorAll('.logo-long > h6').length; i++) {
+            document.querySelectorAll('.logo-long > h6')[i].style.color = random_color;
+        }
+        for(let i = 0; i < document.querySelectorAll('.nav-link').length; i++){
+            document.querySelectorAll('.nav-link')[i].style.color = random_color;
+        }
+        document.getElementById('arrow').style.color = random_color;
+    }
+
+
+    </script>
+</body>
+</html>
