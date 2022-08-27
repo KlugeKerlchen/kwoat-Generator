@@ -423,8 +423,8 @@
         document.getElementById('search-link').style.backgroundColor = '#444444';
     }
     function mouseLeave(){
-        document.getElementById('search-link').style.filter = 'grayscale(100%) opacity(0.7)';
-        document.getElementById('search-link').style.backgroundColor = '#333333';
+        document.getElementById('search-link').style.filter = 'grayscale(70%) opacity(0.7) contrast(50%)';
+        document.getElementById('search-link').style.backgroundColor = 'unset';
     }
 
 
@@ -441,10 +441,9 @@
     }
     function hideDropdown(){
         if(isHidden === false && selectOn == false){
-            console.log('fuck you')
             document.getElementsByClassName('dropdown-content')[0].style.display = 'none';
-            document.getElementById('search-link').style.filter = 'grayscale(100%) opacity(0.7)';
-            document.getElementById('search-link').style.backgroundColor = '#333333';
+            document.getElementById('search-link').style.filter = 'grayscale(70%) opacity(0.7) contrast(50%)';
+            document.getElementById('search-link').style.backgroundColor = 'unset';
             isHidden = true;
         }
         document.getElementById('search-link').addEventListener('mouseenter', mouseEnter)
