@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>kwoat-Generator</title>
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DynaPuff">
     <script src="https://kit.fontawesome.com/11a773415b.js" crossorigin="anonymous"></script>
@@ -16,7 +15,7 @@
         }
         body{
             height: 95vh;
-            background-color: #EA638C;
+            background-color: white;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -31,6 +30,20 @@
             text-align: center;
             max-width: 50vw;
             min-width: 20vw;
+
+            animation: start 1000ms ease-out;
+            animation-fill-mode: forwards;
+        }
+        @keyframes start{
+            0%{
+              transform: scale(0.3)  
+            }
+            70%{
+                transform: scale(1.1);
+            }
+            100%{
+                transform: scale(1.0)
+            }
         }
         .kwoat{
 
@@ -40,6 +53,16 @@
         }
         #person{
             font-size: 2rem;
+            font-weight: 300; 	
+            /*background-color: #666666;
+            -webkit-background-clip: text;
+            -moz-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: rgba(255,255,255,0.5) 0px 3px 3px;*/
+            color: rgba(0,0,0,0.6);
+            text-shadow: 2px 8px 6px rgba(0,0,0,0.2),
+                 0px -5px 35px rgba(255,255,255,0.3);
         }
         #newKwoat{
             display: inline-block;
@@ -101,7 +124,7 @@
             height: 5rem;
             filter: grayscale(70%) opacity(0.7) contrast(50%);
             cursor: pointer;
-            color: #EA638C;
+            color: white;
 
             transition: color 500ms ease-out;
         }
@@ -130,13 +153,16 @@
             margin-bottom: calc(231px-46px);
         }
         .logo-long{
+            text-decoration: none;
+            color: white;
             display: none;
             font-size: 3.5rem;
+            cursor: pointer;
         }
         .logo-long > h6{
             display: inline;
             font-size: 4rem;
-            color: #EA638C;
+            color: white;
             transition: color 500ms ease-out;
         }
         .navbar:hover .logo-long{
@@ -155,13 +181,13 @@
             margin-right: 10px;
             color: white;
             align-self: flex-start;
-            filter: grayscale(100%) opacity(0.7);
+            filter: grayscale(70%) opacity(0.7) contrast(50%);
 
             transition: transform 500ms ease-in-out,  color 200ms ease-out;
         }
         .navbar:hover #arrow{
             transform: rotate(180deg);
-            color: #EA638C;
+            color: white;
             align-self: flex-end;
             filter: grayscale(0%) opacity(1);
         }
@@ -187,7 +213,11 @@
             #arrow{
                 display: none;
             }
+            .main-content{
+                width: 80vw;
+            }
             .dropdown-content{
+                z-index: 1;
                 bottom: 50px;
                 margin-left: 0;
                 margin-right: 0;
@@ -272,7 +302,7 @@
     <header>
         <nav class="navbar">
             <ul class="navbar-nav">
-                <li class="logo"><span class="logo-short">KKK</span><span class="logo-long"><h6>K</h6>luge <h6>K</h6>erlchen <h6>K</h6>lan</span></li>
+                <li class="logo"><span class="logo-short">KKK</span><a class="logo-long"><h6>K</h6>luge <h6>K</h6>erlchen <h6>K</h6>lan</a></li>
                 <li class="nav-item" onclick="changeColor()"><a class="nav-link"><i  style="padding: 0 6px;" class="fa-solid fa-palette"></i><span class="link-text">change Color</span></a></li>
                 <li class="nav-item" onclick="showDropdown()"><a class="nav-link" id="search-link"><i  style="padding: 0 6px;" class="fa-solid fa-magnifying-glass"></i><span class="link-text">Search</span></a></li>
                 <li><div class="dropdown"></div><div class="dropdown-content" onmouseleave="hideDropdown()">
@@ -283,6 +313,7 @@
                         <option value="Maike">Maike</option>
                         <option value="Mischa">Mischa</option>
                         <option value="Ben1">Ben1</option>
+                        <option value="Hendrik">Hendrik</option>
                     </select>
                     <br><br>
                     <form>
@@ -292,7 +323,7 @@
                     <button id="search-button">Search</button>
                 </div></li>
                 <li class="nav-item"><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="nav-link"><i style="padding: 0 3px;" class="fa-brands fa-youtube"></i><span class="link-text">Youtube</span></a></li>
-                <li class="nav-item"><a href="" class="nav-link"><i class="fa-solid fa-robot"></i><span class="link-text">Quotes</span></a></li>
+                <li class="nav-item"><a href="https://lazy-sock.github.io/myWebApps/quotes.html" class="nav-link"><i class="fa-solid fa-robot"></i><span class="link-text">Quotes</span></a></li>
                 <li id="arrow"><i class="fa-solid fa-arrow-right"></i></li>
             </ul>
         </nav>
@@ -384,16 +415,89 @@
         {
             kwoat: `"Die sieht nett aus"`,
             person: 'Jihad'
+        },
+        {
+            kwoat: `"JETZR BRENNT IHRE KÜCHE"`,
+            person: 'Mischa'
+        },
+        {
+            kwoat: `"😁"`,
+            person: 'Hendrik'
+        },
+        {
+            kwoat: `"Ich ess jetzt auch toast"`,
+            person: 'Jihad'
+        },
+        {
+            kwoat: `"ICH HASSE SYLVANA"`,
+            person: 'Mischa'
+        },
+        {
+            kwoat: `"Ich hab Olaf Scholz"`,
+            person: 'Rocco'
+        },
+        {
+            kwoat: `"„OH ALLWISSENDE MISCHA!!!“"`,
+            person: 'Jihad'
+        },
+        {
+            kwoat: `"... 🙁"`,
+            person: 'Mischa'
+        },
+        {
+            kwoat: `"Ich fliege"`,
+            person: 'Maike'
+        },
+        {
+            kwoat: `"jijad"`,
+            person: 'Rocco'
+        },
+        {
+            kwoat: `"ich geh jetzt mehr eiswürfel essen"`,
+            person: 'Hendrik'
+        },
+        {
+            kwoat: `"ich werde sterben"`,
+            person: 'Mischa'
+        },
+        {
+            kwoat: `"ich will in einem Hexenhäuschen im Wald wohnen"`,
+            person: 'Mischa'
+        },
+        {
+            kwoat: `"Ricco ist kein Berg Maike"`,
+            person: 'Mischa'
+        },
+        {
+            kwoat: `"🙈🙈"`,
+            person: 'Hendrik'
+        },
+        {
+            kwoat: `"🤡"`,
+            person: 'Hendrik'
+        },
+        {
+            kwoat: `"Hier liegt ein Penis"`,
+            person: 'Hendrik'
+        },
+        {
+            kwoat: `"Hast du spiele auf deinem handy"`,
+            person: 'Hendrik'
         }
     ];
     
     let wantedItems = [];
     let specified = false; // true if search is in use
     function makeNewKwoat() {
-        console.log(wantedItems);
         if(specified == true){
+            try{
+                let random = Math.floor(Math.random() * wantedItems.length);
+                content.innerText = kwoats[wantedItems[random]].kwoat;
+            }
+            catch(err){
+                window.alert('Sorry, we were unable to find the content you were searching for!')
+            }
             let random = Math.floor(Math.random() * wantedItems.length);
-            console.log(random);
             content.innerText = kwoats[wantedItems[random]].kwoat;
             person.innerText = kwoats[wantedItems[random]].person;
         } else{
@@ -440,18 +544,33 @@
             document.getElementById('search-link').removeEventListener('mouseleave', mouseLeave)
         }
     }
-    function hideDropdown(){
-        if(isHidden === false && selectOn == false){
+    function hideDropdown(important = false){
+        if(isHidden === false && selectOn === false || important === true){
             document.getElementsByClassName('dropdown-content')[0].style.display = 'none';
             document.getElementById('search-link').style.filter = 'grayscale(70%) opacity(0.7) contrast(50%)';
             document.getElementById('search-link').style.backgroundColor = 'unset';
             isHidden = true;
+        } else{
+            if (window.innerWidth > 600){
+            document.getElementsByClassName('navbar')[0].style.width = '16rem';
+            for (let i = 0; i < document.querySelectorAll('.link-text').length; i++) {
+            document.querySelectorAll('.link-text')[i].style.display = 'inline-block';
+            }
+            document.getElementsByClassName('logo-long')[0].style.display = 'inline-block';
+            document.getElementsByClassName('logo-short')[0].style.display = 'none';
+            document.getElementsByClassName('logo')[0].style.marginBottom = 'calc(250px - (231px - 46px))';
+            document.getElementById('arrow').style.transform = 'rotate(180deg)';
+            document.getElementById('arrow').style.alignSelf = 'flex-end';
+            document.getElementById('arrow').style.filter = 'grayscale(0%) opacity(1)';
+        }
         }
         document.getElementById('search-link').addEventListener('mouseenter', mouseEnter)
         document.getElementById('search-link').addEventListener('mouseleave', mouseLeave)
     }
 
-    document.getElementById('search-button').addEventListener('click', function(){
+
+    // search function
+    function search(){
         searchAuthor = document.getElementById('author-select').value;
         searchContent = document.getElementById('content-search').value;
         console.log({searchAuthor, searchContent});
@@ -493,9 +612,55 @@
             }
             makeNewKwoat();
         }
-    })
-    document.getElementById('search-button').addEventListener('click', hideDropdown, {useCapture: false})
+    }
 
+    document.getElementById('search-button').addEventListener('click', search)
+    document.getElementById('search-button').addEventListener('click', hideDropdown(true), {useCapture: false})
+
+    var input = document.getElementById('content-search');
+
+    // Execute a function when the user presses a key on the keyboard
+    input.addEventListener("keypress", function(event) {
+    // If the user presses the "Enter" key on the keyboard
+    if (event.key === "Enter") {
+        // Cancel the default action, if needed
+        event.preventDefault();
+        // Trigger the button element with a click
+        toggleSelect(); // Dropdown is allowed to disappear
+        document.getElementById('search-button').click();
+    }
+    });
+
+    // navbar
+    if (window.innerWidth > 600){
+    function navbarLeave(){
+        if(isHidden === true){
+            document.getElementsByClassName('navbar')[0].style.width = '5rem';
+            for (let i = 0; i < document.querySelectorAll('.link-text').length; i++) {
+            document.querySelectorAll('.link-text')[i].style.display = 'none';
+            }
+            document.getElementsByClassName('logo-long')[0].style.display = 'none';
+            document.getElementsByClassName('logo-short')[0].style.display = 'block';
+            document.getElementsByClassName('logo')[0].style.marginBottom = '250px';
+            document.getElementById('arrow').style.transform = 'rotate(0deg)';
+            document.getElementById('arrow').style.alignSelf = 'flex-start';
+            document.getElementById('arrow').style.filter = 'grayscale(70%) opacity(0.7) contrast(50%)';
+        }
+    }
+    document.getElementsByClassName('navbar')[0].addEventListener('mouseleave', navbarLeave)
+    document.getElementsByClassName('navbar')[0].addEventListener('mouseenter', () => {
+        document.getElementsByClassName('navbar')[0].style.width = '16rem';
+        for (let i = 0; i < document.querySelectorAll('.link-text').length; i++) {
+            document.querySelectorAll('.link-text')[i].style.display = 'inline-block';
+            }
+        document.getElementsByClassName('logo-long')[0].style.display = 'inline-block';
+        document.getElementsByClassName('logo-short')[0].style.display = 'none';
+        document.getElementsByClassName('logo')[0].style.marginBottom = 'calc(250px - (231px - 46px))';
+        document.getElementById('arrow').style.transform = 'rotate(180deg)';
+        document.getElementById('arrow').style.alignSelf = 'flex-end';
+        document.getElementById('arrow').style.filter = 'grayscale(0%) opacity(1)';
+    })
+}
 
 
     // random Color
@@ -528,7 +693,9 @@
         document.getElementById('arrow').style.color = random_color;
     }
 
-
+    window.onload = function(){
+        changeColor();
+    }
     </script>
 </body>
 </html>
