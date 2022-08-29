@@ -7,7 +7,6 @@
     <title>kwoat-Generator</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DynaPuff">
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
     <script src="https://kit.fontawesome.com/11a773415b.js" crossorigin="anonymous"></script>
     <style>
         :root{
@@ -15,8 +14,9 @@
             font-family: 'Open Sans', Arial;
         }
         body{
-            height: 95vh;
-            background-color: white;
+            margin: 0;
+            height: 100vh;
+            background-color: black;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -31,9 +31,11 @@
             text-align: center;
             max-width: 50vw;
             min-width: 20vw;
+            z-index: 0;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 
             animation: start 1000ms ease-out;
-            animation-fill-mode: forwards;
+            animation-fill-mode: backwards;
         }
         @keyframes start{
             0%{
@@ -54,14 +56,14 @@
         }
         #person{
             font-size: 2rem;
-            font-weight: 300; 	
+            font-weight: 500; 	
             /*background-color: #666666;
             -webkit-background-clip: text;
             -moz-background-clip: text;
             background-clip: text;
             color: transparent;
             text-shadow: rgba(255,255,255,0.5) 0px 3px 3px;*/
-            color: rgba(0,0,0,0.6);
+            color: black;
             text-shadow: 2px 8px 6px rgba(0,0,0,0.2),
                  0px -5px 35px rgba(255,255,255,0.3);
         }
@@ -494,13 +496,11 @@
             try{
                 let random = Math.floor(Math.random() * wantedItems.length);
                 content.innerText = kwoats[wantedItems[random]].kwoat;
+                person.innerText = kwoats[wantedItems[random]].person;
             }
             catch(err){
-                window.alert('Sorry, we were unable to find the content you were searching for!')
+                window.alert('Sorry, we were unable to find the content you were searching for!\nPlease change your input and try again!')
             }
-            let random = Math.floor(Math.random() * wantedItems.length);
-            content.innerText = kwoats[wantedItems[random]].kwoat;
-            person.innerText = kwoats[wantedItems[random]].person;
         } else{
         let random = Math.floor(Math.random() * kwoats.length);
         content.innerText = kwoats[random].kwoat;
@@ -572,9 +572,9 @@
 
     // search function
     function search(){
+        hideDropdown(true);
         searchAuthor = document.getElementById('author-select').value;
         searchContent = document.getElementById('content-search').value;
-        console.log({searchAuthor, searchContent});
 
         // search
         if(searchAuthor === 'Everyone' && searchContent === ''){
@@ -616,7 +616,6 @@
     }
 
     document.getElementById('search-button').addEventListener('click', search)
-    document.getElementById('search-button').addEventListener('click', hideDropdown(true), {useCapture: false})
 
     var input = document.getElementById('content-search');
 
