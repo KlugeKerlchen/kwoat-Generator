@@ -264,6 +264,11 @@
         }
 
         #author-select{
+            position: relative;
+            display: block;
+            margin: auto;
+            margin-top: 5px;
+            padding: 5px;
             border: none;
             background-color: #444444;
             color: white;
@@ -277,22 +282,28 @@
         }
 
         #content-search{
+            position: relative;
+            display: block;
+            margin: auto;
+            margin-top: 5px;
             background-color: #444444;
             color: white;
             border: none;
             padding: 3px;
+            width: 200px;
         }
         #content-search:focus{
             outline: 2px solid #06070E;
         }
 
         #search-button{
+            position: relative;
+            display: block;
+            margin: auto;
             background-color: #444444;
             color: white;
             border: none;
             text-align: center;
-            /*margin-left: calc(235px/2 - 80px/2);*/
-            margin-left: 61px;
             border-radius: 5px;
             padding: 7.5px 20px;
         }
@@ -318,7 +329,7 @@
                         <option value="Ben1">Ben1</option>
                         <option value="Hendrik">Hendrik</option>
                     </select>
-                    <br><br>
+                    <br>
                     <form>
                         <label for="content-search">Search for specific Content:</label><br>
                         <input type="text" id="content-search" name="content-search" value="">
@@ -499,7 +510,7 @@
                 person.innerText = kwoats[wantedItems[random]].person;
             }
             catch(err){
-                window.alert('Sorry, we were unable to find the content you were searching for!\nPlease change your input and try again!')
+                window.alert('Sorry, my slaves were unable to find the content you were searching for!\nPlease change your input and try again!')
             }
         } else{
         let random = Math.floor(Math.random() * kwoats.length);
